@@ -1,16 +1,28 @@
-# erpmobile
+# Flutter JWT Authentication Demo
 
-A new Flutter project.
+This is a sample project demonstrating JWT authentication and refresh token mechanism using Flutter for the frontend and ASP.NET Core Web API for the backend.
+
+## Features
+
+- User Login
+- JWT Token storage
+- Token refresh mechanism
+- Basic navigation and authentication wrapper
+
+## Technologies Used
+
+- Flutter
+- ASP.NET Core Web API (for backend)
+- Shared Preferences
+- HTTP package
+- JWT Decoder package
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter SDK
+- Visual Studio Code or Android Studio
+- ASP.NET Core SDK
+- Basic knowledge of Dart and Flutter
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
