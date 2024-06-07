@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:core';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
@@ -7,20 +8,20 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static const baseURL = "https://10.0.2.2:7048/api/Account";
+  final String baseURL = "https://10.0.2.2:7048/api/Account";
 
-//Here we bypass the ssl certificate, it is not allowed
-  HttpClient _createHttpClient() {
+  HttpClient createHttpClient() {
     final HttpClient client = HttpClient();
     client.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
+
     return client;
   }
 
   Future<bool> login(String email, String password) async {
     if (email.isNotEmpty && password.isNotEmpty) {
       try {
-        final http.Client httpClient = IOClient(_createHttpClient());
+        final http.Client httpClient = IOClient(createHttpClient());
 
         final response = await httpClient.post(
           Uri.parse('$baseURL/Login'),
@@ -59,7 +60,7 @@ class AuthService {
 
     if (jwt != null && refreshToken != null) {
       try {
-        final http.Client httpClient = IOClient(_createHttpClient());
+        final http.Client httpClient = IOClient(createHttpClient());
 
         final response = await httpClient.post(
           Uri.parse('$baseURL/Request-RefreshToken'),
@@ -116,7 +117,6 @@ class AuthService {
           return false;
         } else {
           //refresh success
-
           return true;
         }
       } else {
@@ -124,7 +124,6 @@ class AuthService {
         return true;
       }
     }
-
     return false;
   }
 }

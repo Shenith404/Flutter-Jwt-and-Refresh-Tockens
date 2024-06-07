@@ -1,3 +1,4 @@
+import 'package:erpmobile/Services/AccountServie.dart';
 import 'package:erpmobile/Services/AutheService.dart';
 import 'package:erpmobile/login.dart';
 import 'package:flutter/material.dart';
@@ -64,17 +65,32 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            await AuthService().Logout();
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => AuthenticationWrapper()),
-            );
-          },
-          child: Text('Logout'),
-        ),
+      body: Column(
+        children: [
+          Center(
+            child: ElevatedButton(
+              onPressed: () async {
+                await AuthService().Logout();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AuthenticationWrapper()),
+                );
+              },
+              child: const Text('Logout'),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () async {
+                var result = await Accountservie().getUserDetails();
+
+                print('result is  $result');
+              },
+              child: const Text('fetuh details'),
+            ),
+          ),
+        ],
       ),
     );
   }
