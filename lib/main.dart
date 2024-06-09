@@ -1,7 +1,10 @@
-import 'package:erpmobile/Services/AccountServie.dart';
-import 'package:erpmobile/Services/AutheService.dart';
+import 'package:erpmobile/Routing/app_router.dart';
+import 'package:erpmobile/Routing/router_names.dart';
+import 'package:erpmobile/Services/account_servie.dart';
+import 'package:erpmobile/Services/authe_service.dart';
 import 'package:erpmobile/login.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,12 +13,12 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'JWT Authentication Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AuthenticationWrapper(),
+      routerConfig: goRouter,
     );
   }
 }
@@ -71,11 +74,7 @@ class HomeScreen extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () async {
                 await AuthService().Logout();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => AuthenticationWrapper()),
-                );
+                context.goNamed(RouterNames.login);
               },
               child: const Text('Logout'),
             ),

@@ -1,6 +1,7 @@
-import 'package:erpmobile/Services/AutheService.dart';
-import 'package:erpmobile/main.dart';
+import 'package:erpmobile/Routing/router_names.dart';
+import 'package:erpmobile/Services/authe_service.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -30,11 +31,8 @@ class _LogInState extends State<LogIn> {
         await autheService.login(emailController.text, passwordController.text);
 
     if (result == true) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => HomeScreen(),
-        ),
-      );
+      Navigator.of(context).pop();
+      context.goNamed(RouterNames.home);
     }
   }
 
